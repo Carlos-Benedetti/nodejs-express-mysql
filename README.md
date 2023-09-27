@@ -46,11 +46,14 @@ npm i
       FOREIGN KEY (userId) REFERENCES User(id)
     );
     ```
-
+1. ### (opt) Inserir um usuario se quiser
+    ```sql
+    INSERT INTO user SET `id` = NULL, `login` = 'Jose', `password_hash` = NULL, `first_name` = 'Jose', `last_name` = 'Santos', `image_url` = '', `active` = true, `last_modified_date` = '2023-09-27 11:41:05.359'"
+    ```
 ## abrindo o servidor
 
 ```bash
 npm start
 ```
 
-quando aparecer a msg "Server is running on port 8080.", pronto :)
+quando aparecer a msg "Server is running on port 3000.", pronto :)
