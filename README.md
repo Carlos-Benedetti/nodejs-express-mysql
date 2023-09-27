@@ -7,23 +7,45 @@ npm i
 - Instalar docker
 - Importar os seguintes containers:
 
-### rodar mysql
+1. ### Rodar mysql
 
-```bash
-docker run --name mysql-local-lowercase -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 -d mysql:5.6 --lower_case_table_names=1
-```
+    ```bash
+    docker run --name mysql-local-lowercase -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 -d mysql:5.7 --lower_case_table_names=1
+    ```
 
-### criar tabela mysql
-```sql
-CREATE DATABASE testdb;
-USE testdb;
-CREATE TABLE IF NOT EXISTS `tutorials` (
-  id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  title varchar(255) NOT NULL,
-  description varchar(255),
-  published BOOLEAN DEFAULT false
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-```
+1. ### Criar um novo banco
+    ```sql
+    CREATE DATABASE synapse;
+    ```
+
+1. ### Selecionar o banco para uso
+    ```sql
+    USE synapse;
+    ```
+
+1. ### Criar a tabela para usuarios
+    ```sql
+    CREATE TABLE IF NOT EXISTS `user` (
+      id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+      login varchar(255) NOT NULL,
+      password_hash varchar(255) NOT NULL,
+      first_name varchar(50),	
+      last_name varchar(50),
+      image_url varchar(250),
+      active BOOLEAN DEFAULT true,
+      last_modified_date timestamp
+    );
+    ```
+1. ### Criar a tabela para ordens
+
+    ```sql
+    CREATE TABLE IF NOT EXISTS `order` (
+      id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+      userId int,
+      last_modified_date timestamp,
+      FOREIGN KEY (userId) REFERENCES User(id)
+    );
+    ```
 
 ## abrindo o servidor
 

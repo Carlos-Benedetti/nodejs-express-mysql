@@ -1,4 +1,4 @@
-module.exports = app => {
+function V1Route(app) {
   const tutorials = require("../controllers/tutorial.controller.js");
 
   var router = require("express").Router();
@@ -26,3 +26,5 @@ module.exports = app => {
 
   app.use('/api/tutorials', router);
 };
+
+exports.V1Route = V1Route
